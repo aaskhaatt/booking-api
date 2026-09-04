@@ -43,3 +43,7 @@ class BookingResponse(BaseModel):
     start_time: datetime
     end_time: datetime
     created_at: datetime
+
+
+class TokenResponse(BaseModel):
+    message: str

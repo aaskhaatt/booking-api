@@ -13,7 +13,7 @@ def verify_password(password, hashed_password):
 
 
 
-def register_user(user_data, db):
+def register_user_service(user_data, db):
     try:
         user = get_user_by_email(user_data.email, db)
 
@@ -26,7 +26,7 @@ def register_user(user_data, db):
 
 
 
-def authenticate_user(email, password, db):
+def authenticate_user_service(email, password, db):
     try:
         user = get_user_by_email(email, db)
         

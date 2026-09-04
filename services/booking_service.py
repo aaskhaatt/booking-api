@@ -25,6 +25,8 @@ def create_booking_service(user_id: int, booking_data, db):
 
     return create_booking(user_id, booking_data.room_id, booking_data.start_time, booking_data.end_time, db)
 
+
+
 def get_user_bookings_service(user_id, db):
 
     return get_user_bookings(user_id, db)
@@ -56,3 +58,12 @@ def update_booking_service(booking_id, user_id, booking_data, db):
         raise BookingConflictError()
     
     return update_booking(booking, booking_data.start_time, booking_data.end_time, db)
+
+
+def get_booking_service(booking_id, user_id, db):
+    booking = get_booking_by_id(booking_id, db)
+     
+    if booking.user_id != user_id:
+        raise BookingAccessDeniedError()
+     
+    return booking
