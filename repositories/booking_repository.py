@@ -41,10 +41,33 @@ def get_conflicting_bookings(
     room_id: int,
     start_time: datetime,
     end_time: datetime,
-    db: Session
+    db: Session,
+    exclude_booking_id: int | None = None
 ):
+    
     stmt = select(Booking).where(Booking.room_id == room_id, Booking.start_time < end_time, Booking.end_time > start_time)
+
+    if exclude_booking_id:
+        stmt = stmt.where(Booking.id != exclude_booking_id)
 
     bookings = db.scalars(stmt).all()
 
     return bookings
+
+
+def delete_booking(booking, db):
+    db.delete(booking)
+    db.commit()
+
+
+def update_booking(booking: Booking,
+                   start_time: datetime,
+                   end_time: datetime,
+                   db: Session):
+    booking.start_time = start_time
+    booking.end_time = end_time
+
+    db.commit()
+    db.refresh(booking)
+
+    return booking

@@ -24,3 +24,6 @@ class BookingConflictError(Exception):
 
 class BookingAccessDeniedError(Exception):
     pass
+
+class InvalidBookingTimeError(Exception):
+    pass
