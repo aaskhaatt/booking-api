@@ -43,6 +43,8 @@ def test_register_duplicate_email():
     assert response.status_code == 409
     assert response.json()["detail"] == "User already exists"
 
+
+
 def test_login_success():
     client.post(
         "/auth/register",
