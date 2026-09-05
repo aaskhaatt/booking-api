@@ -61,9 +61,11 @@ def delete_booking(booking, db):
 
 
 def update_booking(booking: Booking,
-                   start_time: datetime,
-                   end_time: datetime,
-                   db: Session):
+    start_time: datetime,
+    end_time: datetime,
+    db: Session
+):  
+
     booking.start_time = start_time
     booking.end_time = end_time
 

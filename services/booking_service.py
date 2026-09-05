@@ -47,17 +47,21 @@ def update_booking_service(booking_id, user_id, booking_data, db):
 
     if booking.user_id != user_id:
         raise BookingAccessDeniedError()
+
+    start_time = booking_data.start_time if booking_data.start_time is not None else booking.start_time
+
+    end_time = booking_data.end_time if booking_data.end_time is not None else booking.end_time
     
-    if booking_data.start_time >= booking_data.end_time:
+    if start_time >= end_time:
          raise InvalidBookingTimeError()
 
 
-    conflicts = get_conflicting_bookings(booking.room_id, booking_data.start_time, booking_data.end_time, db, booking_id)
+    conflicts = get_conflicting_bookings(booking.room_id, start_time, end_time, db, booking_id)
 
     if conflicts:
         raise BookingConflictError()
     
-    return update_booking(booking, booking_data.start_time, booking_data.end_time, db)
+    return update_booking(booking, start_time, end_time, db)
 
 
 def get_booking_service(booking_id, user_id, db):
