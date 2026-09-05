@@ -7,14 +7,15 @@ from exceptions import (
     BookingNotFoundError,
     BookingConflictError,
     BookingAccessDeniedError,
-    InvalidBookingTimeError
+    InvalidBookingTimeError,
+    InvalidCredentialsError
 )
 
 ERROR_RESPONSES = {
     UserNotFoundError: (404, "User Not Found"),
     RoomNotFoundError: (404, "Room not found"),
     BookingNotFoundError: (404, "Booking not found"),
-
+    InvalidCredentialsError: (401, "Invalid credentials"),
     UserAlreadyExistsError: (409, "User already exists"),
     BookingConflictError: (409, "Booking conflict"),
 
