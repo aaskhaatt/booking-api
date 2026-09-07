@@ -2,7 +2,7 @@ import pytest
 from models import Room, User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from services.user_service import hash_password
+from security import hash_password
 from database import get_db, Base
 from main import app
 from fastapi.testclient import TestClient

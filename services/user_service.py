@@ -1,13 +1,9 @@
 from repositories.user_repository import *
 from exceptions import *
+from security import hash_password, verify_password
 
 
 
-def hash_password(password):
-    return password
-
-def verify_password(password, hashed_password):
-    return password == hashed_password
 
 
 

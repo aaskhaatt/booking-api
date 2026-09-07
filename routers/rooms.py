@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from services.room_services import * 
+from services.room_service import * 
 from database import get_db
 from schemas import RoomResponse
 from sqlalchemy.orm import Session
